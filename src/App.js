@@ -1,5 +1,5 @@
 import React from 'react';
-import {ConfigProvider, View, Panel, Epic, Tabbar, TabbarItem} from "@vkontakte/vkui";
+import {ConfigProvider, View, Panel, Root} from "@vkontakte/vkui";
 import '@vkontakte/vkui/dist/vkui.css';
 import IndexPage from "./pages/index";
 import ProductsPage from "./pages/products";
@@ -25,16 +25,7 @@ class App extends React.Component {
 
         return (
             <ConfigProvider isWebView={true}>
-                <Epic activeStory={this.state.activeStory} tabbar={
-                    <Tabbar>
-                        <TabbarItem
-                            onClick={this.onStoryChange}
-                            selected={this.state.activeStory === "products"}
-                            data-story="products"
-                            text="Products"
-                        ><Icon20WorkOutline/></TabbarItem>
-                    </Tabbar>
-                }>
+                <Root activeView="index">
                     <View id="index" activePanel="panel_index">
                         <Panel id="panel_index">
                             <IndexPage />
@@ -45,7 +36,7 @@ class App extends React.Component {
                             <ProductsPage />
                         </Panel>
                     </View>
-                </Epic>
+                </Root>
             </ConfigProvider>
         )
     }
